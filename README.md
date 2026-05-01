@@ -120,7 +120,7 @@ Infra       Docker · docker-compose · Neon PostgreSQL · Render
 ## Run locally
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/instech-ai
+git clone https://github.com/IpshitaPPradhan/instech-ai
 cd instech-ai
 copy .env.example .env           # Windows
 # cp .env.example .env           # Mac/Linux
@@ -151,6 +151,7 @@ instech-ai/
 │       └── parametric.py    # Phase 4 — parametric CAT trigger
 ├── dashboard/
 │   └── app.py               # Streamlit UI (navy + gold)
+├── Docs/                    # Screenshots and demo video
 ├── seed.py                  # Realistic Indian insurance seed data
 ├── Dockerfile
 ├── docker-compose.yml
