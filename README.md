@@ -2,9 +2,26 @@
 
 ### Climate-linked Premium Calculator · Claim Fraud Detection · Property Exposure Map
 
+> ⚠️ **Free tier notice:** Both services run on Render's free tier and spin down after 15 minutes of inactivity. First load may take 30–60 seconds to wake up. Subsequent requests are instant.
+
 **Live demo:** [instech-ai-dashboard.onrender.com](https://instech-ai-dashboard.onrender.com)
 &nbsp;|&nbsp;
-**API docs:** [instech-ai-api.onrender.com/docs](https://instech-ai-api.onrender.com/docs)
+**API docs:** [instech-ai.onrender.com/docs](https://instech-ai.onrender.com/docs)
+---
+
+## Demo
+[▶ Watch demo](Docs/demo_video.mp4)
+| Policy Exposure Map | Fraud Detection |
+|---|---|
+| ![Dashboard map with risk circles across India](Docs/Screenshot_2.png) | ![Claims page with fraud badges](Docs/Screenshot_4.png) |
+
+| Parametric CAT Trigger | Customers |
+|---|---|
+| ![Recent claims](Docs/Screenshot_1.png) | ![New policy](Docs/Screenshot_5.png) |
+
+| Policies with risk scores | API Swagger docs |
+|---|---|
+| ![Policy cards with XGBoost risk scores](Docs/Screenshot_3.png) | ![FastAPI Swagger UI](Docs/Screenshot_6.png) |
 
 ---
 
