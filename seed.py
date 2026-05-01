@@ -7,7 +7,7 @@ import requests
 import random
 from datetime import date, timedelta
 
-API = "http://localhost:8000"
+API = "https://instech-ai-api.onrender.com"
 
 LOCATIONS = [
     {"address": "Connaught Place, New Delhi",           "lat": 28.6315, "lon": 77.2167},
