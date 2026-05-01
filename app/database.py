@@ -2,7 +2,17 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sess
 from sqlalchemy.orm import DeclarativeBase
 from app.config import settings
 
-engine = create_async_engine(settings.DATABASE_URL, echo=False, pool_pre_ping=True)
+# SSL required for Neon, ignored for local Docker PostgreSQL
+connect_args = {}
+if "neon.tech" in settings.DATABASE_URL:
+    connect_args = {"ssl": "require"}
+
+engine = create_async_engine(
+    settings.DATABASE_URL,
+    echo=False,
+    pool_pre_ping=True,
+    connect_args=connect_args,
+)
 
 AsyncSessionLocal = async_sessionmaker(
     engine,
