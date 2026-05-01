@@ -7,7 +7,7 @@ import requests
 import random
 from datetime import date, timedelta
 
-API = "https://instech-ai-api.onrender.com"
+API = "https://instech-ai.onrender.com"
 
 LOCATIONS = [
     {"address": "Connaught Place, New Delhi",           "lat": 28.6315, "lon": 77.2167},
@@ -99,7 +99,7 @@ CLAIM_AMOUNTS_BY_TYPE = {
 
 
 def post(path, payload):
-    r = requests.post(f"{API}{path}", json=payload, timeout=60)
+    r = requests.post(f"{API}{path}", json=payload, timeout=120)
     if r.status_code in (200, 201):
         return r.json()
     print(f"  ✗ {path} → {r.status_code}: {r.text[:150]}")
@@ -108,7 +108,18 @@ def post(path, payload):
 
 def run():
     print("── instech-ai seed (India) ──────────────────────────")
-
+    
+    import time
+    for i in range(3):
+        try:
+            r = requests.get(f"{API}/health", timeout=120)
+            if r.status_code == 200:
+                print("  ✓ API is awake")
+                break
+        except Exception:
+            print(f"  waiting... ({i+1}/3)")
+            time.sleep(30)
+            
     # 1. Customers
     print(f"\n[1/4] Creating {len(CUSTOMERS)} customers...")
     customer_ids = []
