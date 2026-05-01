@@ -6,8 +6,9 @@ import folium
 from streamlit_folium import st_folium
 import requests
 from datetime import date, timedelta
+import os
 
-API = "http://api:8000"
+API = os.getenv("API_URL", "http://api:8000")
 
 st.set_page_config(page_title="instech-ai", page_icon="◈", layout="wide")
 

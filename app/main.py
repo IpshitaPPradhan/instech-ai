@@ -1,8 +1,9 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
 from app.database import engine, Base
-from app.models import Customer, Policy, Claim  # ensure models are imported for create_all
+from app.models import Customer, Policy, Claim
 from app.routers.customers import router as customers_router
 from app.routers.policies import router as policies_router
 from app.routers.claims import router as claims_router
@@ -10,9 +11,13 @@ from app.routers.claims import router as claims_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Create all tables on startup (use Alembic for production migrations)
     async with engine.begin() as conn:
-        await conn.run_sync(lambda c: Base.metadata.create_all(c, checkfirst=True))
+        # Advisory lock prevents two workers running create_all simultaneously
+        await conn.execute(text("SELECT pg_advisory_lock(12345)"))
+        try:
+            await conn.run_sync(lambda c: Base.metadata.create_all(c, checkfirst=True))
+        finally:
+            await conn.execute(text("SELECT pg_advisory_unlock(12345)"))
     yield
     await engine.dispose()
 

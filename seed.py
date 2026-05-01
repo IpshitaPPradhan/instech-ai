@@ -99,7 +99,7 @@ CLAIM_AMOUNTS_BY_TYPE = {
 
 
 def post(path, payload):
-    r = requests.post(f"{API}{path}", json=payload, timeout=15)
+    r = requests.post(f"{API}{path}", json=payload, timeout=60)
     if r.status_code in (200, 201):
         return r.json()
     print(f"  ✗ {path} → {r.status_code}: {r.text[:150]}")
